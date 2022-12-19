@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "fisheryates",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ankushmittal87/FisherYates.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "fc77f17d93b8145ec31062e9acf4fef6642ad9c2"
+      }
+    },
+    {
+      "identity" : "playingcards",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ankushmittal87/PlayingCards.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9ba505cfdabcb24936441be952cb6f0fe756a42e"
+      }
+    }
+  ],
+  "version" : 2
+}
