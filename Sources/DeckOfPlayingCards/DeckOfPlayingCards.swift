@@ -1,6 +1,49 @@
-public struct DeckOfPlayingCards {
-    public private(set) var text = "Hello, World!"
 
-    public init() {
+import PlayingCard
+
+public struct Deck: Equatable {
+    fileprivate var cards: [PlayingCard]
+
+    /// Returns a deck of playing cards.
+    public static func standard52CardDeck() -> Deck {
+        var cards: [PlayingCard] = []
+        for rank in Rank.allCases {
+            for suit in Suit.allCases {
+                cards.append(PlayingCard(rank: rank, suit: suit))
+            }
+        }
+
+        return Deck(cards)
+    }
+
+    /// Creates a deck of playing cards.
+    public init(_ cards: [PlayingCard]) {
+        self.cards = cards
+    }
+
+    /// Randomly shuffles a deck of playing cards.
+    public mutating func shuffle() {
+        cards.shuffle()
+    }
+
+    /// Deals a card from the deck.
+    ///
+    /// The function returns the last card in the deck.
+    public mutating func deal() -> PlayingCard? {
+        guard !cards.isEmpty else { return nil }
+
+        return cards.removeLast()
+    }
+    
+    /// The number of remaining cards in the deck.
+    public var count: Int {
+        cards.count
+    }
+}
+
+// MARK: - ExpressibleByArrayLiteral
+extension Deck : ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: PlayingCard...) {
+        self.init(elements)
     }
 }

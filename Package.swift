@@ -7,15 +7,15 @@ let package = Package(
     name: "DeckOfPlayingCards",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "DeckOfPlayingCards",
-            targets: ["DeckOfPlayingCards"]),
+        .library(name: "DeckOfPlayingCards",targets: ["DeckOfPlayingCards"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/ankushmittal87/FisherYates.git", branch: "main"),
-        .package(url: "https://github.com/ankushmittal87/PlayingCards.git", branch: "main")
+        .package(name: "PlayingCard",
+                 url: "https://github.com/ankushmittal87/PlayingCards.git", from: "1.0.0"),
+        .package(name: "FisherYates", url: "https://github.com/ankushmittal87/FisherYates.git", from: "1.0.0")
+        
         
     ],
     targets: [
@@ -23,7 +23,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "DeckOfPlayingCards",
-            dependencies: ["FisherYates", "PlayingCard"]),
+            dependencies: [ .byName(name: "PlayingCard"),.byName(name: "FisherYates")]),
         .testTarget(
             name: "DeckOfPlayingCardsTests",
             dependencies: ["DeckOfPlayingCards"]),
